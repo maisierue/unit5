@@ -11,13 +11,13 @@ float p2x, p2y, p2d;
       
 //Key variables----------------------
 
-boolean aKey, dKey, wKey, sKey; //false by default
+boolean aKey, dKey, wKey, sKey, spaceKey; //false by default
 
 void setup(){
-   size (600,600); 
+   size (1200,800); 
    p1x = width/2;
    p1y = height/2;
-   p1d=100;
+   p1d=50;
 }
 void draw(){
   background (white);
@@ -28,6 +28,7 @@ void draw(){
  if (aKey)p1x= p1x-5;
  if (sKey)p1y= p1y+5;
  if (dKey)p1x= p1x+5;
+ if (spaceKey)p1y =p1y-5;
 }
 
 void keyPressed(){
@@ -36,6 +37,7 @@ void keyPressed(){
   if (key == 'a')aKey = true; 
   if (key == 's')sKey = true; 
   if (key == 'd')dKey = true;
+  if (key == ' ') spaceKey= true;
  // if (keyCode == RIGHT);
  
  //p2
@@ -46,10 +48,11 @@ void keyPressed(){
 }
 
 void keyReleased(){
-  if (key == 'w')wKey = false; 
-  if (key == 'a')aKey = false; 
-  if (key == 's')sKey = false; 
-  if (key == 'd')dKey = false; 
+  if (keyCode == UP)wKey = false; 
+  if (keyCode == DOWN)aKey = false; 
+  if (keyCode ==  LEFT)sKey = false; 
+  if (keyCode == RIGHT)dKey = false; 
+  if (keyCode == ' ') spaceKey = false;
   
 }
   
