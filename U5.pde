@@ -2,6 +2,7 @@
 //colors ----------------------------
 color white = #FFFFFF;
 color red = #9d3e3e;
+color grey = 646464;
 
 //target-----------------------------
 float p1x,p1y, //position
@@ -15,24 +16,28 @@ boolean aKey, dKey, wKey, sKey, spaceKey; //false by default
 boolean upKey, downKey, leftKey, rightKey; //p2
 void setup(){
    size (1200,800); 
-   p1x = width/2;
-   p1y = height/2;
+   p1x = 150;
+   p1y = 275;
    p1d=50;
    
-   p2x = width/2;
-   p2y = height/2;
-   p2d = 40;
+   p2x = 150;
+   p2y = 575;
+   p2d = 50;
 }
 void draw(){
   background (white);
+   strokeWeight(3);
+  line(0,300,1200,300);
+  line(0,600,1200,600);//lines separating players
+  
+  strokeWeight (1);
   fill(red);
-  circle(p1x,p1y,p1d);
+  circle(p1x,p1y,p1d);//p1
  
   fill(white);
-  circle(p2x,p2y,p2d);
+  circle(p2x,p2y,p2d);//p2
   
- strokeWeight(3);
-  line(600,0,600,800);
+  //bird
   
  
  strokeWeight (1);
@@ -42,13 +47,13 @@ void draw(){
  if (dKey)p1x= p1x+5;
  if (spaceKey)p1y =p1y-5;
  
- if (upKey)p2y= p2y-8;
- if (leftKey)p2x= p2x-8;
- if (rightKey)p2x= p2x+8;
- if (downKey)p2y= p2y+8;
+ if (upKey)p2y= p2y-5;
+ if (leftKey)p2x= p2x-5;
+ if (rightKey)p2x= p2x+5;
+ if (downKey)p2y= p2y+5;
  
- // if (downKey)p2x= p1x+5; error code that made the circle tp to the other circle
-
+ 
+ 
 }
 
 void keyPressed(){
@@ -84,3 +89,11 @@ void keyReleased(){
   
 }
   
+  void bird(float x, float y, float b){
+    pushMatrix(); 
+    translate(x,y);
+    fill(grey);
+    circle(x,y,b);
+    rect(x,y,b,40);
+    popMatrix();
+  }
