@@ -2,13 +2,18 @@
 //colors ----------------------------
 color white = #FFFFFF;
 color red = #9d3e3e;
-color grey = 646464;
+color grey = #646464;
 
 //target-----------------------------
 float p1x,p1y, //position
       p1d; //diameter
+float birdx= 1250; //bird
+float birdy= 0;
 
 float p2x, p2y, p2d;
+float birdx2= 1250; //bird
+float birdy2= 0;
+
       
 //Key variables----------------------
 
@@ -16,19 +21,19 @@ boolean aKey, dKey, wKey, sKey, spaceKey; //false by default
 boolean upKey, downKey, leftKey, rightKey; //p2
 void setup(){
    size (1200,800); 
-   p1x = 150;
+   p1x = 250;
    p1y = 275;
    p1d=50;
    
-   p2x = 150;
+   p2x = 250;
    p2y = 575;
    p2d = 50;
 }
 void draw(){
   background (white);
    strokeWeight(3);
-  line(0,300,1200,300);
-  line(0,600,1200,600);//lines separating players
+  bline(0,0,0,0);
+  bline(0,300,0,300);//lines separating players
   
   strokeWeight (1);
   fill(red);
@@ -37,9 +42,29 @@ void draw(){
   fill(white);
   circle(p2x,p2y,p2d);//p2
   
-  //bird
+  //bird 1
+  strokeWeight (3);
+  stroke(grey);
+  fill(grey);
+  rect(birdx +20,birdy+100,30,30);
+  birdx = birdx-8;
+  if (birdx<-300){
+  birdx=1250;
+  birdx = birdx-(random(8,18));
+  }
   
+  //bird2
+    strokeWeight (3);
+  stroke(grey);
+  fill(grey);
+  rect(birdx2 +20,birdy2+500,30,30);
+  birdx2 = birdx-8;
+  if (birdx2<-300){
+  birdx2=1250;
+  birdx2 = birdx2-(random(8,18));
+}
  
+ stroke(0);
  strokeWeight (1);
  if (wKey)p1y= p1y-5;
  if (aKey)p1x= p1x-5;
@@ -51,10 +76,10 @@ void draw(){
  if (leftKey)p2x= p2x-5;
  if (rightKey)p2x= p2x+5;
  if (downKey)p2y= p2y+5;
- 
- 
- 
 }
+ 
+ 
+
 
 void keyPressed(){
   //p1
@@ -89,11 +114,30 @@ void keyReleased(){
   
 }
   
-  void bird(float x, float y, float b){
-    pushMatrix(); 
-    translate(x,y);
-    fill(grey);
-    circle(x,y,b);
-    rect(x,y,b,40);
-    popMatrix();
+  void bline(float x, float y, float x2, float y2){
+  line(x+0,y+300,x2+1200,y2+300);
   }
+  
+  void p1(){
+    
+  }
+  
+ // void b1(){
+ //     strokeWeight (3);
+ //     fill(grey);
+ // rect(b1 +20,400,30,30);
+ // b1 = b1-8;
+ // if (b1<-300){
+ // b1=1250;
+ // }
+ // }
+  
+  
+  //void bird(float x, float y, float b){
+  //  pushMatrix(); 
+  //  translate(x,y);
+  //  fill(grey);
+   // circle(x,y,b);
+  //  rect(x,y,b,40);
+  //  popMatrix();
+ // }
